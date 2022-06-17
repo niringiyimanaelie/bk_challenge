@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Provider } from 'react-redux';
+import Apidata from './components/Apidata';
+import Repodata from './components/Repodata';
+import store from './store';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+
+
+//hash router to be used when hosting a website
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Apidata} />
+          <Route exact path="/user/:username" component={Repodata} />
+        </Switch>
+      </Router>
+    </Provider>
+
   );
 }
 
